@@ -1,5 +1,5 @@
-import { express } from "express";
-import {ProductManager} from "../productManager.js"
+import express from "express";
+import { ProductManager } from "../productManager.js"
 
 export const productsRouter = express.Router();
 
