@@ -31,7 +31,7 @@ cartsRouter.post("/:cid/product/:pid", async (req,res) => {
     const instanceManager = new ProductManager("./src/carts.json");     // Instanciamos una clase, pasando como parametro la ruta que tiene el archivo carts.json con los carritos de compra.
     const viewCart = await instanceManager.getProducts();
     const cartFound = viewCart.find(item => item.id == cid);            // Bucamos el carrito, por el id que recivimos por params, usando la funcion find cuando encuentre la igualdad.
-    if(cartFound) {
+    if(cartFound) {                                                                 // Preguntamos si se encontro la busqueda anterior.
         const productFound = cartFound.products.find(item => item.product == pid);  // Buscamos si se encuentra el ID de producto, dentro del carrito.
         let newProductCart = [];                                                    // Creamo un array, para los productos del carrito.
         if(productFound){                                                           // Preguntamos si ya existia ese producto en el carrito.        
@@ -43,7 +43,7 @@ cartsRouter.post("/:cid/product/:pid", async (req,res) => {
                 }
             });
         }
-        else {
+        else {                                                                      
             newProductCart.push(...cartFound.products);                             // Desparramamos las propiedades del producto para insertarla en el array.
             newProductCart.push( productsCart );                                    // Introducimos las propiedades enviadas en el body
         }
